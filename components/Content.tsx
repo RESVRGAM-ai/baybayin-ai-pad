@@ -9,12 +9,13 @@ const BaybayinConverter = () => {
   const [currentFont, setCurrentFont] = useState('BaybayinSimple');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [fontSize, setFontSize] = useState(36);
-  cconst [placeholderWidth, setPlaceholderWidth] = useState(0);
+  const [placeholderWidth, setPlaceholderWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const placeholderRef = useRef<HTMLDivElement>(null);
 
   // Handle window resize and mobile detection
   useEffect(() => {
+    // Exit if not in browser environment
     if (typeof window === 'undefined') return;
 
     const handleResize = () => {
@@ -23,10 +24,10 @@ const BaybayinConverter = () => {
 
     // Initial check
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Cleanup function
     return () => window.removeEventListener('resize', handleResize);
   }, []); // Empty dependency array
