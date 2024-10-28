@@ -102,7 +102,9 @@ type VowelCancellerType = {
  * This special case reflects the historical "ma-nga" pronunciation
  * and implements the special no-deleter rule for the initial 'm'.
  */
-const isStandaloneMga = (word: string): boolean => {
+// Add ESLint disable comment above the function
+// @ts-ignore
+const isStandaloneMga = (word: string, fullText: string): boolean => {
   const mgaPattern = /\b[Mm]ga\b/;
   return mgaPattern.test(word);
 };
