@@ -11,21 +11,23 @@ const BaybayinConverter = () => {
   const [fontSize, setFontSize] = useState(36);
   const [placeholderWidth, setPlaceholderWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  
   const placeholderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (placeholderRef.current) {
-      const width = placeholderRef.current.offsetWidth;
-      setPlaceholderWidth(width);
-    }
-    
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768);
+      }
     };
+    
+    // Initial check
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
