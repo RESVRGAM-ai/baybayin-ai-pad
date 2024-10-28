@@ -16,26 +16,25 @@ const BaybayinConverter = () => {
   // Handle window resize and mobile detection
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 768);
-      }
+      setIsMobile(window.innerWidth < 768);
     };
 
+    // Only run on client side
     if (typeof window !== 'undefined') {
       // Initial check
       handleResize();
-
+      
       // Add event listener
       window.addEventListener('resize', handleResize);
       
-      // Cleanup
+      // Return cleanup function
       return () => {
         window.removeEventListener('resize', handleResize);
       };
     }
-  }, []);
+  }, []); // Empty dependency array
 
-  // Handle placeholder width measurement
+  // Handle placeholder width measurement - separate concern
   useEffect(() => {
     if (placeholderRef.current) {
       const width = placeholderRef.current.offsetWidth;
