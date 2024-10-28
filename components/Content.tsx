@@ -111,7 +111,7 @@ const BaybayinConverter = () => {
                 >
                   <div className="space-y-1">
                     <p className="text-xs md:text-sm">Ang Baybayin ay panulat silabaryo at hindi alpabeto.</p>
-                    <p className="text-xs md:text-sm">Ang bawat titik ay Pantig "Ba" at hindi isa-sang letra "B".</p>
+                    <p className="text-xs md:text-sm">Ang bawat titik ay Pantig &quot;Ba&quot; at hindi isa-sang letra &quot;B&quot;.</p>
                     <p className="text-xs md:text-sm">Ginagamit ito sa pagsulat ng mga wikang Filipino.</p>
                   </div>
                 </div>
