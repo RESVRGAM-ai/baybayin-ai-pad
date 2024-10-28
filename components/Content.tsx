@@ -13,6 +13,7 @@ const BaybayinConverter = () => {
   const [isMobile, setIsMobile] = useState(false);
   const placeholderRef = useRef<HTMLDivElement>(null);
 
+  // Handle window resize and mobile detection
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== 'undefined') {
@@ -24,12 +25,13 @@ const BaybayinConverter = () => {
     handleResize();
 
     // Add event listener
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
+  // Handle placeholder width measurement
   useEffect(() => {
     if (placeholderRef.current) {
       const width = placeholderRef.current.offsetWidth;
