@@ -102,10 +102,10 @@ type VowelCancellerType = {
  * This special case reflects the historical "ma-nga" pronunciation
  * and implements the special no-deleter rule for the initial 'm'.
  */
-const isStandaloneMga = (word: string, fullText: string): boolean => {
-    const mgaPattern = /\b[Mm]ga\b/;
-    return mgaPattern.test(word);
-  };
+const isStandaloneMga = (word: string): boolean => {
+  const mgaPattern = /\b[Mm]ga\b/;
+  return mgaPattern.test(word);
+};
   
   /**
    * Converts Latin text to Baybayin script with special handling for:
