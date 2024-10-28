@@ -9,29 +9,26 @@ const BaybayinConverter = () => {
   const [currentFont, setCurrentFont] = useState('BaybayinSimple');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [fontSize, setFontSize] = useState(36);
-  const [placeholderWidth, setPlaceholderWidth] = useState(0);
+  cconst [placeholderWidth, setPlaceholderWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const placeholderRef = useRef<HTMLDivElement>(null);
 
   // Handle window resize and mobile detection
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    // Only run on client side
-    if (typeof window !== 'undefined') {
-      // Initial check
-      handleResize();
-      
-      // Add event listener
-      window.addEventListener('resize', handleResize);
-      
-      // Return cleanup function
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
+    // Initial check
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup function
+    return () => window.removeEventListener('resize', handleResize);
   }, []); // Empty dependency array
 
   // Handle placeholder width measurement - separate concern
