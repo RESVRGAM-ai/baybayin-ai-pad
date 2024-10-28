@@ -20,14 +20,18 @@ const BaybayinConverter = () => {
         setIsMobile(window.innerWidth < 768);
       }
     };
-    
-    // Initial check
-    handleResize();
 
-    // Add event listener
     if (typeof window !== 'undefined') {
+      // Initial check
+      handleResize();
+
+      // Add event listener
       window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
+      
+      // Cleanup
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }
   }, []);
 
