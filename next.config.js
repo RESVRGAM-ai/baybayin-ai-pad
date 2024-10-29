@@ -3,7 +3,8 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     optimizeFonts: true,
-    
+  
+    // Enhanced font handling
     webpack(config) {
       config.module.rules.push({
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -15,6 +16,7 @@ const nextConfig = {
       return config;
     },
   
+    // Specific headers for fonts
     async headers() {
       return [
         {
@@ -27,6 +29,10 @@ const nextConfig = {
             {
               key: 'Access-Control-Allow-Origin',
               value: '*'
+            },
+            {
+              key: 'Content-Type',
+              value: 'font/woff2'
             }
           ]
         }

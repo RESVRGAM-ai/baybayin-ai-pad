@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { convertToBaybayin } from '@/src/utils/baybayinConverter';
 import GradientAnimationBar from '@/components/GradientAnimationBar';
 import DownloadButton from '@/components/DownloadButton';
+import FontLoader from '@/components/FontLoader';
 
 const BaybayinConverter: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
@@ -41,14 +42,19 @@ const BaybayinConverter: React.FC = () => {
   const handleFontChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     const newFont = e.target.value;
     setIsTransitioning(true);
+    // Add specific handling for Doctrina
+  if (newFont === 'DoctrinaChristiana') {
+    // Force a font load check
+    document.fonts.ready.then(() => {
+      setCurrentFont(newFont);
+      setIsTransitioning(false);
+    }).catch(err => {
+      console.error('Font loading error:', err);
+      setIsTransitioning(false);
+    });
+  } else {
     setTimeout(() => {
       setCurrentFont(newFont);
-      // Add specific class for Doctrina
-    if (newFont === 'DoctrinaChristiana') {
-      document.querySelector('.font-baybayin')?.classList.add('font-doctrina');
-    } else {
-      document.querySelector('.font-baybayin')?.classList.remove('font-doctrina');
-    }
       setIsTransitioning(false);
     }, 150);
   };
@@ -67,6 +73,7 @@ const BaybayinConverter: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white relative isolate">
+      <FontLoader />
       <GradientAnimationBar />
       <div className="w-full max-w-3xl mx-auto px-4 flex flex-col" style={{ marginTop: '-1px' }}>
         <div className="text-right pt-6 mb-8">

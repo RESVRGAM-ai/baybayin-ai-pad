@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font declarations */
+/* Primary Baybayin font */
 @font-face {
   font-family: 'BaybayinSimple';
   src: url('/fonts/BaybayinSimpleTRS.woff2') format('woff2');
@@ -11,17 +11,22 @@
   font-display: swap;
 }
 
+/* Doctrina Christiana font with specific settings */
 @font-face {
   font-family: 'DoctrinaChristiana';
-  src: url('/fonts/DoctrinaChristianaBOLD.woff2') format('woff2');
+  src: local('DoctrinaChristiana Bold'),
+       local('DoctrinaChristiana-Bold'),
+       url('/fonts/DoctrinaChristianaBOLD.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
   font-display: block;
-  font-feature-settings: "kern" 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  ascent-override: 90%;
+  descent-override: 10%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
 }
 
+/* TAWBID font */
 @font-face {
   font-family: 'TAWBIDPinta';
   src: url('/fonts/TAWBIDPintaRegular.woff2') format('woff2');
@@ -30,21 +35,12 @@
   font-display: swap;
 }
 
-/* Font optimization */
-.font-baybayin {
-  font-feature-settings: "kern" 1;
-  -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings: "kern" 1;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Add specific class for Doctrina font */
+/* Font-specific optimizations */
 .font-doctrina {
   font-family: 'DoctrinaChristiana', serif !important;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  letter-spacing: 0.03em !important;
 }
