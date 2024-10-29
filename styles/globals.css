@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure font paths are correct for production */
+/* Font declarations */
 @font-face {
   font-family: 'BaybayinSimple';
   src: url('/fonts/BaybayinSimpleTRS.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'DoctrinaChristiana';
   src: url('/fonts/DoctrinaChristianaBOLD.woff2') format('woff2');
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -24,10 +24,10 @@
   src: url('/fonts/TAWBIDPintaRegular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
-/* Optimize font rendering */
+/* Font optimization */
 .font-baybayin {
   font-feature-settings: "kern" 1;
   -webkit-font-feature-settings: "kern" 1;
@@ -44,8 +44,15 @@ body {
   padding: 0;
 }
 
-/* Font preload optimization */
-html {
-  font-feature-settings: "kern" 1;
-  text-rendering: optimizeLegibility;
+/* Ensure Tailwind utilities are available */
+@layer utilities {
+  .font-baybayin {
+    font-family: 'BaybayinSimple', sans-serif;
+  }
+  .font-doctrina {
+    font-family: 'DoctrinaChristiana', serif;
+  }
+  .font-tawbid {
+    font-family: 'TAWBIDPinta', sans-serif;
+  }
 }

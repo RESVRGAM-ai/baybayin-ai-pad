@@ -3,10 +3,10 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     
-    // Add font files to be optimized
+    // Enable font and CSS optimization
     optimizeFonts: true,
     
-    // Configure headers for font loading
+    // Configure headers for fonts and styles
     async headers() {
       return [
         {
@@ -21,7 +21,7 @@ const nextConfig = {
       ];
     },
   
-    // Handle webpack configuration for fonts
+    // Configure webpack for fonts
     webpack(config) {
       config.module.rules.push({
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
