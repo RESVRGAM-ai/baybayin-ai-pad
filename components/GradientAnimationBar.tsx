@@ -1,45 +1,16 @@
 import React from 'react';
 
-const GradientAnimationBar = () => {
+const GradientAnimationBar: React.FC = () => {
   return (
-    <>
-      <div 
-        className="w-full fixed top-0 left-0 z-[9999]"
+    <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+      <div
+        className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
         style={{
-          height: '6px', // Slightly taller to ensure coverage
-          background: 'linear-gradient(90deg, #FF8C00, #FFD700, #4CAF50, #2196F3, #8B4513)',
-          backgroundSize: '400% 100%',
-          animation: 'gradientSlide 10s linear infinite',
-          border: 'none',
-          boxShadow: '0 1px 0 white', // Add white shadow to cover the line
-          marginTop: '-1px', // Pull up slightly to cover any gap
-          transform: 'translateZ(0)', // Force GPU acceleration
+          clipPath:
+            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
         }}
       />
-      <style jsx global>{`
-        @keyframes gradientSlide {
-          0% {
-            background-position: 0% 50%;
-          }
-          100% {
-            background-position: 400% 50%;
-          }
-        }
-
-        /* Add these global styles */
-        body {
-          margin: 0;
-          padding: 0;
-          background: white;
-          overflow-x: hidden;
-        }
-
-        #__next {
-          background: white;
-          min-height: 100vh;
-        }
-      `}</style>
-    </>
+    </div>
   );
 };
 
