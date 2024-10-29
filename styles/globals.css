@@ -2,44 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Your custom styles go here */
-/* Add these classes if not already present */
+/* Ensure font paths are correct for production */
+@font-face {
+  font-family: 'BaybayinSimple';
+  src: url('/fonts/BaybayinSimpleTRS.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DoctrinaChristiana';
+  src: url('/fonts/DoctrinaChristianaBOLD.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TAWBIDPinta';
+  src: url('/fonts/TAWBIDPintaRegular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Optimize font rendering */
 .font-baybayin {
-    font-feature-settings: "kern" 1;
-    -webkit-font-feature-settings: "kern" 1;
-    -moz-font-feature-settings: "kern" 1;
-    text-rendering: optimizeLegibility;
-  }
-  
-  /* Ensure smooth font rendering */
-  textarea {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  font-feature-settings: "kern" 1;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  @font-face {
-    font-family: 'BaybayinSimple';
-    src: url('/fonts/BaybayinSimpleTRS.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'DoctrinaChristiana';
-    src: url('/fonts/DoctrinaChristianaBOLD.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'TAWBIDPinta';
-    src: url('/fonts/TAWBIDPintaRegular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  /* In your global.css or similar */
+/* Base styles */
 body {
   background-color: white;
   margin: 0;
   padding: 0;
+}
+
+/* Font preload optimization */
+html {
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
 }

@@ -3,31 +3,10 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     
-    // Optimize static asset handling
-    images: {
-      unoptimized: true, // For static exports if needed
-      remotePatterns: [] // Add any remote image patterns if needed
-    },
+    // Add font files to be optimized
+    optimizeFonts: true,
     
-    // Webpack configuration for PDF generation
-    webpack: (config, { isServer }) => {
-      // Handle canvas in SSR
-      if (isServer) {
-        config.externals.push({
-          canvas: 'canvas',
-          'html2canvas': 'html2canvas'
-        });
-      }
-      
-      return config;
-    },
-  
-    // Environment configuration
-    env: {
-      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    },
-  
-    // Static file handling
+    // Configure headers for font loading
     async headers() {
       return [
         {
@@ -40,6 +19,18 @@ const nextConfig = {
           ]
         }
       ];
+    },
+  
+    // Handle webpack configuration for fonts
+    webpack(config) {
+      config.module.rules.push({
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/fonts/[name][ext]'
+        }
+      });
+      return config;
     }
   };
   
