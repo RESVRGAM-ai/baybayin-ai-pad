@@ -43,6 +43,12 @@ const BaybayinConverter: React.FC = () => {
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentFont(newFont);
+      // Add specific class for Doctrina
+    if (newFont === 'DoctrinaChristiana') {
+      document.querySelector('.font-baybayin')?.classList.add('font-doctrina');
+    } else {
+      document.querySelector('.font-baybayin')?.classList.remove('font-doctrina');
+    }
       setIsTransitioning(false);
     }, 150);
   };

@@ -8,7 +8,7 @@
   src: url('/fonts/BaybayinSimpleTRS.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +17,9 @@
   font-weight: bold;
   font-style: normal;
   font-display: block;
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -24,7 +27,7 @@
   src: url('/fonts/TAWBIDPintaRegular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 /* Font optimization */
@@ -37,22 +40,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Base styles */
-body {
-  background-color: white;
-  margin: 0;
-  padding: 0;
-}
-
-/* Ensure Tailwind utilities are available */
-@layer utilities {
-  .font-baybayin {
-    font-family: 'BaybayinSimple', sans-serif;
-  }
-  .font-doctrina {
-    font-family: 'DoctrinaChristiana', serif;
-  }
-  .font-tawbid {
-    font-family: 'TAWBIDPinta', sans-serif;
-  }
+/* Add specific class for Doctrina font */
+.font-doctrina {
+  font-family: 'DoctrinaChristiana', serif !important;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

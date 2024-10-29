@@ -19,6 +19,7 @@ class MyDocument extends Document {
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
+            key="doctrina-font"
           />
           <link
             rel="preload"
