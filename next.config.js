@@ -1,13 +1,15 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   webpack: (config) => {
-    // Add this to help debug the PostCSS config
-    console.log('PostCSS Config Path:', require.resolve('./postcss.config.js'));
+    // Force treat postcss.config.js as CommonJS
+    config.module.rules.push({
+      test: /postcss\.config\.js$/,
+      loader: 'node-loader',
+    });
     return config;
   },
-  
+
   reactStrictMode: true,
   // Vercel specific optimizations
   swcMinify: true,
