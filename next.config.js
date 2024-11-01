@@ -1,19 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config) => {
-    // Force treat postcss.config.js as CommonJS
-    config.module.rules.push({
-      test: /postcss\.config\.js$/,
-      loader: 'node-loader',
-    });
-    return config;
+  swcMinify: true,
+  
+  // CSS Configuration
+  css: {
+    modules: false,
   },
 
-  reactStrictMode: true,
-  // Vercel specific optimizations
-  swcMinify: true,
-
+  // Headers Configuration
   async headers() {
     return [
       {
@@ -24,14 +19,12 @@ const nextConfig = {
             value: "font-src 'self' data: https://*.vercel.app;"
           },
           {
-            // Enable font optimization
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable'
           }
         ],
       },
       {
-        // Specific headers for font files
         source: '/fonts/:path*',
         headers: [
           {
@@ -42,12 +35,21 @@ const nextConfig = {
       }
     ]
   },
-  // Optional: Configure webpack if needed
-  webpack(config) {
+
+  // Combined Webpack Configuration
+  webpack: (config) => {
+    // PostCSS loader configuration
+    config.module.rules.push({
+      test: /postcss\.config\.js$/,
+      loader: 'node-loader',
+    });
+
+    // Font file handling
     config.module.rules.push({
       test: /\.(woff2)$/,
       type: 'asset/resource'
     });
+
     return config;
   }
 }
