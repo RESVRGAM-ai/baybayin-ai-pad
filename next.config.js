@@ -2,8 +2,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  webpack: (config) => {
+    // Add this to help debug the PostCSS config
+    console.log('PostCSS Config Path:', require.resolve('./postcss.config.js'));
+    return config;
+  },
+  
+  reactStrictMode: true,
   // Vercel specific optimizations
   swcMinify: true,
+
   async headers() {
     return [
       {
