@@ -95,7 +95,7 @@ const BaybayinConverter: React.FC = () => {
                 placeholder="ᜊᜌ᜔ᜊᜌᜒᜈ᜔ ᜊᜓᜑᜌᜒᜈ᜔"
                 style={{ 
                   fontFamily: currentFont,
-                  letterSpacing: '0.03em',
+                  letterSpacing: '0.02em',
                   lineHeight: '1.5',
                   opacity: isTransitioning ? 0 : (outputText ? 1 : 0.7),
                   transform: outputText ? 'translateY(0)' : 'translateY(10px)',

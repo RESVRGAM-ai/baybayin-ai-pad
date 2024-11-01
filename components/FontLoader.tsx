@@ -7,7 +7,7 @@ const FontLoader: React.FC = () => {
       {
         family: 'DoctrinaChristiana',
         url: '/fonts/DoctrinaChristianaBOLD.woff2',
-        descriptors: { weight: 'bold' }
+        descriptors: { weight: 'regular' }
       }
     ];
 
