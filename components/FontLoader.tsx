@@ -1,38 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const FontLoader: React.FC = () => {
+interface FontLoaderProps {
+  onFontLoad?: (status: boolean) => void;
+}
+
+const FontLoader: React.FC<FontLoaderProps> = ({ onFontLoad }) => {
+  const [fontStatus, setFontStatus] = useState<{[key: string]: boolean}>({});
+
+  // Font loading utility
+  const checkFontLoading = async (fontFamily: string): Promise<boolean> => {
+    try {
+      await document.fonts.load(`1em "${fontFamily}"`);
+      return true;
+    } catch (error) {
+      console.error(`Font loading error for ${fontFamily}:`, error);
+      return false;
+    }
+  };
+
   useEffect(() => {
-    // Load fonts programmatically to ensure they're loaded
-    const fonts = [
-      {
-        family: 'DoctrinaChristiana',
-        url: '/fonts/DoctrinaChristianaBOLD.woff2',
-        descriptors: { weight: 'regular' }
-      }
-    ];
+    const loadFonts = async () => {
+      const fonts = ['BaybayinSimple', 'DoctrinaChristiana', 'TAWBIDPinta'];
+      const statuses: {[key: string]: boolean} = {};
 
-    fonts.forEach(async (font) => {
-      try {
-        // @ts-ignore - FontFace is not in TypeScript types
-        const fontFace = new FontFace(
-          font.family,
-          `url(${font.url}) format('woff2')`,
-          font.descriptors
-        );
-        
-        // Wait for font to load
-        await fontFace.load();
-        
-        // Add to document fonts
-        document.fonts.add(fontFace);
-        
-        console.log(`${font.family} loaded successfully`);
-      } catch (err) {
-        console.error(`Error loading ${font.family}:`, err);
+      for (const font of fonts) {
+        statuses[font] = await checkFontLoading(font);
       }
-    });
-  }, []);
 
+      setFontStatus(statuses);
+      onFontLoad?.(Object.values(statuses).every(status => status));
+    };
+
+    loadFonts();
+  }, [onFontLoad]);
+
+  // This component doesn't render anything visible
   return null;
 };
 

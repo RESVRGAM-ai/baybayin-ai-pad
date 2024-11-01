@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
+import { FontLoader, GradientAnimationBar, DownloadButton } from '@/components';
 import { convertToBaybayin } from '@/src/utils/baybayinConverter';
-import GradientAnimationBar from '@/components/GradientAnimationBar';
-import DownloadButton from '@/components/DownloadButton';
-import FontLoader from '@/components/FontLoader';
 
-const BaybayinConverter: React.FC = () => {
+interface BaybayinConverterProps {
+  // Add any props if needed
+}
+
+const BaybayinConverter: React.FC<BaybayinConverterProps> = () => {
   const [inputText, setInputText] = useState<string>('');
   const [outputText, setOutputText] = useState<string>('');
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
@@ -42,21 +44,21 @@ const BaybayinConverter: React.FC = () => {
   const handleFontChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     const newFont = e.target.value;
     setIsTransitioning(true);
-    // Add specific handling for Doctrina
-  if (newFont === 'DoctrinaChristiana') {
-    // Force a font load check
-    document.fonts.ready.then(() => {
-      setCurrentFont(newFont);
-      setIsTransitioning(false);
-    }).catch(err => {
-      console.error('Font loading error:', err);
-      setIsTransitioning(false);
-    });
-  } else {
-    setTimeout(() => {
-      setCurrentFont(newFont);
-      setIsTransitioning(false);
-    }, 150);
+    
+    if (newFont === 'DoctrinaChristiana') {
+      document.fonts.ready.then(() => {
+        setCurrentFont(newFont);
+        setIsTransitioning(false);
+      }).catch(err => {
+        console.error('Font loading error:', err);
+        setIsTransitioning(false);
+      });
+    } else {
+      setTimeout(() => {
+        setCurrentFont(newFont);
+        setIsTransitioning(false);
+      }, 150);
+    }
   };
 
   const handleFontSizeChange = (increment: boolean): void => {
@@ -71,9 +73,15 @@ const BaybayinConverter: React.FC = () => {
     return isMobile ? '2.5rem' : '3.75rem';
   };
 
+  const handleFontLoaded = (loaded: boolean) => {
+    if (!loaded) {
+      console.warn('Some fonts failed to load');
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-white relative isolate">
-      <FontLoader />
+      <FontLoader onFontLoad={handleFontLoaded} />
       <GradientAnimationBar />
       <div className="w-full max-w-3xl mx-auto px-4 flex flex-col" style={{ marginTop: '-1px' }}>
         <div className="text-right pt-6 mb-8">
@@ -145,10 +153,10 @@ const BaybayinConverter: React.FC = () => {
                     <span className="text-lg">+</span>
                   </button>
                   <DownloadButton 
-      outputText={outputText}
-      currentFont={currentFont}
-      fontSize={fontSize}
-    />
+                    outputText={outputText}
+                    currentFont={currentFont}
+                    fontSize={fontSize}
+                  />
                 </div>
               )}
 

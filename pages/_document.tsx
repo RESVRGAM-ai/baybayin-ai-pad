@@ -13,14 +13,13 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
-          <link
-            rel="preload"
-            href="/fonts/DoctrinaChristianaBOLD.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-            key="doctrina-font"
-          />
+          <link 
+          rel="preload" 
+          href="/fonts/DoctrinaChristianaBOLD.woff2" 
+          as="font" 
+          type="font/woff2" 
+          crossOrigin="anonymous"
+        />
           <link
             rel="preload"
             href="/fonts/TAWBIDPintaRegular.woff2"
