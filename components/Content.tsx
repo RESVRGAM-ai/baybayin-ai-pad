@@ -2,17 +2,17 @@ import React, { useState, useRef, useEffect } from 'react';
 import { convertToBaybayin } from '@/src/utils/baybayinConverter';
 import GradientAnimationBar from '@/components/GradientAnimationBar';
 
-const BaybayinConverter = () => {
-  const [inputText, setInputText] = useState('');
-  const [outputText, setOutputText] = useState('');
-  const [isInputFocused, setIsInputFocused] = useState(false);
-  const [currentFont, setCurrentFont] = useState('BaybayinSimple');
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [fontSize, setFontSize] = useState(36);
-  const [placeholderWidth, setPlaceholderWidth] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+const BaybayinConverter: React.FC = () => {
+  const [inputText, setInputText] = useState<string>('');
+  const [outputText, setOutputText] = useState<string>('');
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+  const [currentFont, setCurrentFont] = useState<string>('BaybayinSimple');
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [fontSize, setFontSize] = useState<number>(36);
+  const [placeholderWidth, setPlaceholderWidth] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   
-  const placeholderRef = useRef(null);
+  const placeholderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,13 +34,13 @@ const BaybayinConverter = () => {
     }
   }, [currentFont]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
     setInputText(input);
     setOutputText(convertToBaybayin(input));
   };
 
-  const handleFontChange = (e) => {
+  const handleFontChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newFont = e.target.value;
     setIsTransitioning(true);
     setTimeout(() => {
@@ -49,14 +49,14 @@ const BaybayinConverter = () => {
     }, 150);
   };
 
-  const handleFontSizeChange = (increment) => {
+  const handleFontSizeChange = (increment: boolean) => {
     setFontSize(prevSize => {
       const newSize = increment ? prevSize + 2 : prevSize - 2;
       return Math.min(Math.max(newSize, 24), 48);
     });
   };
 
-  const getFontSize = () => {
+  const getFontSize = (): string => {
     if (outputText) {
       return `${fontSize}px`;
     }
