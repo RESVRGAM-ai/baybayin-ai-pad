@@ -5,8 +5,5 @@
     "react/no-unescaped-entities": "off",
     "@next/next/no-img-element": "off"
   },
-  "ignorePatterns": ["src/**/*.ts", "src/**/*.tsx"],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  }
+  "ignorePatterns": ["src/**/*.ts", "src/**/*.tsx"]
 }

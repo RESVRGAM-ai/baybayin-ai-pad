@@ -7,7 +7,7 @@ import {
 import GradientAnimationBar from '@/components/GradientAnimationBar';
 import Image from 'next/image';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BaybayinConfig, ConversionResult } from '@/src/utils/baybayin/types';
+import type { BaybayinConfig, ConversionResult } from '@/src/utils/baybayin/types';
 
 const BaybayinConverter: React.FC = () => {
     const [inputText, setInputText] = useState<string>('');
@@ -239,9 +239,7 @@ const BaybayinConverter: React.FC = () => {
                             <div className="p-4">
                                 <textarea
                                     className="w-full h-32 bg-transparent text-gray-400 resize-none focus:outline-none font-mono transition-colors duration-300"
-                                    placeholder="Ako ay isang AI agent na likha ni G. Leyson.
-
-Ano ang gusto mong isalin sa Baybayin?"
+                                    placeholder={`Ako ay isang &quot;AI agent&quot; na likha ni G. Leyson.\n\nAno ang gusto mong isalin sa Baybayin?`}
                                     value={inputText}
                                     onChange={handleInputChange}
                                     onFocus={() => setIsInputFocused(true)}
