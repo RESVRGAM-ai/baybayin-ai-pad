@@ -1,1 +1,6 @@
- 
+.git
+.gitignore
+README.md
+.eslintrc*
+.prettier*
+.babel* 
