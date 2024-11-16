@@ -6,6 +6,8 @@ import {
 } from '@/src/utils/baybayin';
 import GradientAnimationBar from '@/components/GradientAnimationBar';
 import Image from 'next/image';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BaybayinConfig, ConversionResult } from '@/src/utils/baybayin/types';
 
 const BaybayinConverter: React.FC = () => {
     const [inputText, setInputText] = useState<string>('');
@@ -265,7 +267,13 @@ Ano ang gusto mong isalin sa Baybayin?"
                             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
                         >
                             <span className="text-gray-600">Buy me a </span>
-                            <Image src="/ko-fi-ic.webp" alt="Ko-fi" width={20} height={20} className="h-5 w-auto" />
+                            <Image 
+                                src="/ko-fi-ic.webp" 
+                                alt="Ko-fi" 
+                                width={20} 
+                                height={20} 
+                                className="h-5 w-auto" 
+                            />
                         </a>
                         <p className="text-gray-400">
                             Powered by AI. Built by{' '}
