@@ -1,6 +1,5 @@
 import { ConversionOptions, ConversionResult } from './types';
 import {
-    baybayinMap,
     baseConsonantMap,
     VOWEL_CANCELLERS
 } from './utils';
