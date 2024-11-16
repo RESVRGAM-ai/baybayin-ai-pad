@@ -153,7 +153,7 @@ const BaybayinConverter: React.FC = () => {
                                 >
                                     <div className="space-y-1">
                                         <p className="text-xs md:text-sm">Ang Baybayin ay panulat silabaryo at hindi alpabeto.</p>
-                                        <p className="text-xs md:text-sm">Ang bawat titik ay Pantig "Ba" at hindi isa-sang letra "B".</p>
+                                        <p className="text-xs md:text-sm">Ang bawat titik ay Pantig 'Ba' at hindi isa-sang letra 'B'.</p>
                                         <p className="text-xs md:text-sm">Ginagamit ito sa pagsulat ng mga wikang Filipino.</p>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@ const BaybayinConverter: React.FC = () => {
                             <div className="p-4">
                                 <textarea
                                     className="w-full h-32 bg-transparent text-gray-400 resize-none focus:outline-none font-mono transition-colors duration-300"
-                                    placeholder="Ako ay isang 'AI agent' na likha ni G. Leyson.
+                                    placeholder="Ako ay isang AI agent na likha ni G. Leyson.
 
 Ano ang gusto mong isalin sa Baybayin?"
                                     value={inputText}
