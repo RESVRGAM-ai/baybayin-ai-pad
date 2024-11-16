@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Add any other needed configurations here
+  images: {
+    domains: ['localhost'],
+    unoptimized: process.env.NODE_ENV !== 'production'
+  }
 };
 
 export default nextConfig;
